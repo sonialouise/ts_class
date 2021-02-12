@@ -99,7 +99,7 @@ def retrain_rise(data):
 
 def retrain_models(args):
     logging.info("1. Reading csv file...")
-    data = pd.read_csv(args.data)
+    data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
     data = normalise_data(data.iloc[:, :-1])
     logging.info("3. Retraining Time Series Classifier...")

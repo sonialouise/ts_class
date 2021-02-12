@@ -17,7 +17,7 @@ def run_model(data, model, model_name):
 
 def main(data):
     logging.info("1. Reading csv file...")
-    data = pd.read_csv(data)
+    data = pd.read_csv(data, header=0)
     logging.info("2. Normalising data...")
     data = normalise_data(data)
     logging.info("3. Predicting with TimeSeries Forest Classifier...")
