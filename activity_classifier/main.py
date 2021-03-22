@@ -15,11 +15,11 @@ def run_model(data, model, model_name):
     return data
 
 
-def main(data):
+def main(args):
     logging.info("1. Reading csv file...")
-    data = pd.read_csv(data, header=0)
+    data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = normalise_data(data)
+    data = normalise_data(data.iloc[:, 0:int(args.frame_no) + 1])
     logging.info("3. Predicting with TimeSeries Forest Classifier...")
     data = run_model(data, TSF_MODEL, 'TSF')
     logging.info("4. Predicting with Random Interval Spectral Ensemble...")
@@ -32,6 +32,7 @@ def main(data):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='test')
     parser.add_argument('data', help=f'Data to retrain model (csv format)')
+    parser.add_argument('frame_no', help=f'Number of frames to use in retraining')
     args = parser.parse_args()
 
-    main(args.data)
+    main(args)
