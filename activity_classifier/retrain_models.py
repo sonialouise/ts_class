@@ -101,7 +101,7 @@ def retrain_models(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = pd.concat([normalise_data(data.iloc[:, 0:int(args.frame_no) + 1]), data['status']], axis=1)
+    data = pd.concat([normalise_data(data.iloc[:, 0:int(args.frame_no) + 1]), data[LABEL]], axis=1)
     logging.info("3. Retraining Time Series Classifier...")
     retrain_tsf(data)
     logging.info("4. Retraining Random Interval Spectral Ensemble...")
