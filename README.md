@@ -37,7 +37,9 @@ y_axis = neurons
 No header rows or columns should be included.
 
 To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
+ ```python
  python -m activity_classifier.main path/to/data.csv
+ ```
  
  The output file should appear in the ts_class/data directory
  
@@ -48,7 +50,9 @@ To run the script, activate the virtual environment if using, then in the comman
  Training data should be in the same format as above, but also include a labelling column called 'status' which contains the activity label for the neuron on that row (e.g. 'active', 'inactive')
  
  To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
+ ```python
  python -m activity_classifier.retrain_models path/to/training/data.csv
+ ```
  
  The retrained models will be saved in the /models directory and will replace any existing models.
  
