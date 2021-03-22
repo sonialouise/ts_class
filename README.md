@@ -27,20 +27,17 @@ Data should be prepared in a csv file, in the following format:
 2.2|2.3|2.4|3.0| ... | active
 
 The 'status' column is required for model training, but not for running the classifier.
+x_axis = observations_over_time (up to 1306 observations)
+y_axis = neurons
 
 ## Running models
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
 
-The input data should be a .csv file of the format:
-x_axis = observations_over_time (up to 1306 observations)
-y_axis = neurons
-No header rows or columns should be included.
-
 To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
  ```python
- python -m activity_classifier.main path/to/data.csv
+ python -m activity_classifier.main path/to/data.csv <number of frames>
  ```
- 
+ Note, number of frames should be the same number of frames used in model training. If greater or less frames are required, retrain first.
  The output file should appear in the ts_class/data directory
  
  
@@ -51,7 +48,7 @@ To run the script, activate the virtual environment if using, then in the comman
  
  To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
  ```python
- python -m activity_classifier.retrain_models path/to/training/data.csv
+ python -m activity_classifier.retrain_models path/to/training/data.csv <number of frames>
  ```
  
  The retrained models will be saved in the /models directory and will replace any existing models.
