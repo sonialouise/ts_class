@@ -18,6 +18,16 @@ It is assumed that python is already installed on your local machine. A virtual 
 4. pip install -r path/to/requirements.txt
 
 
+## Data
+Data should be prepared in a csv file, in the following format:
+
+0 | 1 | 2 | 3 | ... | status
+--|---|---|---|-----|-------
+1.2|1.3|1.4|2.0| ... | inactive
+2.2|2.3|2.4|3.0| ... | active
+
+The 'status' column is required for model training, but not for running the classifier.
+
 ## Running models
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
 
