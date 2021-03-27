@@ -1,6 +1,6 @@
 import pickle
 from .config import TSF_MODEL, RISE_MODEL, OBS, PREDICTION, OUTPUT_PATH
-from .prepare_data import normalise_data
+from .prepare_data import prepare_data
 import argparse
 import logging
 import pandas as pd
@@ -19,7 +19,7 @@ def main(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = normalise_data(data.iloc[:, 0:int(args.frame_no) + 1])
+    data = prepare_data(data.iloc[:, 0:int(args.frame_no) + 1])
     logging.info("3. Predicting with TimeSeries Forest Classifier...")
     data = run_model(data, TSF_MODEL, 'TSF')
     logging.info("4. Predicting with Random Interval Spectral Ensemble...")

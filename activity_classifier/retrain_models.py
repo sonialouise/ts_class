@@ -15,7 +15,7 @@ from sktime.transformers.series_as_features.summarize import RandomIntervalFeatu
 from sktime.utils.time_series import time_series_slope
 
 from .config import OBS, LABEL, TSF_MODEL, RISE_MODEL
-from .prepare_data import normalise_data
+from .prepare_data import prepare_data
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
@@ -101,7 +101,7 @@ def retrain_models(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = pd.concat([normalise_data(data.iloc[:, 0:int(args.frame_no) + 1]), data[LABEL]], axis=1)
+    data = pd.concat([prepare_data(data.iloc[:, 0:int(args.frame_no) + 1]), data[LABEL]], axis=1)
     logging.info("3. Retraining Time Series Classifier...")
     retrain_tsf(data)
     logging.info("4. Retraining Random Interval Spectral Ensemble...")
