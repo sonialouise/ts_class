@@ -13,11 +13,10 @@ The repo should be cloned to your local machine, see here: https://docs.github.c
 ## Install requirements
 It is assumed that python is already installed on your local machine. A virtual environment is recommended to hold all libraries required to run the project in a clean and safe way. To do this:
 1. Open command line
-2. python -m venv /path/to/new/virtual/environment
-3. ./path/to/new/virtual/environment/Scripts/activate
-4. where python # to check python set up in new environment
-5. cd path/to/ts_class/ #to change working directory to location of ts_class folder
-6. pip install -r requirements.txt
+2. python -m venv /path/to/new/virtual/environment    #We recommned creating new virtual environment in the envs folder C:/Users/Your_name/anaconda3/envs/SA
+4. /path/to/new/virtual/environment/Scripts/activate   #If using envs folder C:/Users/Your_name/anaconda3/envs/SA/Scripts/activate
+5. cd path/to/ts_class/   #change working directory to location of ts_class folder
+7. pip install -r requirements.txt
 
 
 ## Data
@@ -35,7 +34,12 @@ y_axis = neurons
 ## Running models
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
 
-To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
+To run the script, activate the virtual environment if using
+>>> conda activate 'name of virtual environment'
+
+In the command line move to the ts_class folder 
+>>> cd path/to/ts_class/
+enter
  ```python
  python -m activity_classifier.main path/to/data.csv <number of frames>
  ```
