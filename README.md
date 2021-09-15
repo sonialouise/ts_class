@@ -14,8 +14,10 @@ The repo should be cloned to your local machine, see here: https://docs.github.c
 It is assumed that python is already installed on your local machine. A virtual environment is recommended to hold all libraries required to run the project in a clean and safe way. To do this:
 1. Open command line
 2. python -m venv /path/to/new/virtual/environment
-3. /path/to/new/virtual/environment/Scripts/activate
-4. pip install -r path/to/requirements.txt
+3. ./path/to/new/virtual/environment/Scripts/activate
+4. where python # to check python set up in new environment
+5. cd path/to/ts_class/ #to change working directory to location of ts_class folder
+6. pip install -r requirements.txt
 
 
 ## Data
