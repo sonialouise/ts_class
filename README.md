@@ -35,10 +35,11 @@ y_axis = neurons
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
 
 To run the script, activate the virtual environment if using
->>> conda activate 'name of virtual environment'
-
+```conda activate 'name of virtual environment'
+```
 In the command line move to the ts_class folder 
->>> cd path/to/ts_class/
+```cd path/to/ts_class/
+```
 enter
  ```python
  python -m activity_classifier.main path/to/data.csv <number of frames>
