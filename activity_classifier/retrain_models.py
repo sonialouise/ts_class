@@ -9,13 +9,13 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
-from sktime.classification.compose import TimeSeriesForestClassifier
-from sktime.classification.frequency_based import RandomIntervalSpectralForest
-from sktime.transformers.series_as_features.summarize import RandomIntervalFeatureExtractor
-from sktime.utils.time_series import time_series_slope
+from sktime.classification.interval_based import TimeSeriesForestClassifier
+from sktime.classification.interval_based import RandomIntervalSpectralEnsemble
+# from sktime.transformers.series_as_features.summarize import RandomIntervalFeatureExtractor
+# from sktime.utils.time_series import time_series_slope
 
-from .config import OBS, LABEL, TSF_MODEL, RISE_MODEL
-from .prepare_data import prepare_data
+from config import OBS, LABEL, TSF_MODEL, RISE_MODEL
+from prepare_data import prepare_data
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
@@ -56,32 +56,38 @@ def train_and_cross_validate(data, model, model_name):
     return model
 
 
-def prepare_timeseries_forest_classifier():
-    steps = [
-        (
-            "extract",
-            RandomIntervalFeatureExtractor(
-                n_intervals="sqrt", features=[np.mean, np.std, time_series_slope]
-            ),
-        ),
-        ("clf", DecisionTreeClassifier()),
-    ]
-    time_series_tree = Pipeline(steps)
+# def prepare_timeseries_forest_classifier():
+#     steps = [
+#         (
+#             "extract",
+#             RandomIntervalFeatureExtractor(
+#                 n_intervals="sqrt", features=[np.mean, np.std, time_series_slope]
+#             ),
+#         ),
+#         ("clf", DecisionTreeClassifier()),
+#     ]
+#     time_series_tree = Pipeline(steps)
+#
+#     tsf = TimeSeriesForestClassifier(
+#         estimator=time_series_tree,
+#         n_estimators=100,
+#         criterion="entropy",
+#         bootstrap=True,
+#         oob_score=True,
+#         random_state=1,
+#         n_jobs=-1,
+#     )
+#     return tsf
 
+def prepare_timeseries_forest_classifier():
     tsf = TimeSeriesForestClassifier(
-        estimator=time_series_tree,
-        n_estimators=100,
-        criterion="entropy",
-        bootstrap=True,
-        oob_score=True,
-        random_state=1,
-        n_jobs=-1,
+        n_estimators=10
     )
     return tsf
 
 
 def prepare_random_interval_spectral_ensemble(n_estimators=10):
-    return RandomIntervalSpectralForest(n_estimators=n_estimators)
+    return RandomIntervalSpectralEnsemble(n_estimators=n_estimators)
 
 
 def retrain_tsf(data):
@@ -101,7 +107,7 @@ def retrain_models(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = pd.concat([prepare_data(data.iloc[:, 0:int(args.frame_no) + 1]), data[LABEL]], axis=1)
+    data = pd.concat([prepare_data(data.iloc[:, 0:int(args.frame_no)]), data[LABEL]], axis=1)
     logging.info("3. Retraining Time Series Classifier...")
     retrain_tsf(data)
     logging.info("4. Retraining Random Interval Spectral Ensemble...")
