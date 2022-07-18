@@ -80,7 +80,7 @@ def train_and_cross_validate(data, model, model_name):
 #     return tsf
 
 def prepare_timeseries_forest_classifier():
-    tsf = TimeSeriesForestClassifier(
+    tsf = TimeSeriesForest(
         n_estimators=10
     )
     return tsf
