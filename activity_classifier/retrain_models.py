@@ -14,8 +14,8 @@ from sktime.classification.frequency_based import RandomIntervalSpectralForest
 # from sktime.transformers.series_as_features.summarize import RandomIntervalFeatureExtractor
 # from sktime.utils.time_series import time_series_slope
 
-from config import OBS, LABEL, TSF_MODEL, RISE_MODEL
-from prepare_data import prepare_data
+from .config import OBS, LABEL, TSF_MODEL, RISE_MODEL
+from .prepare_data import prepare_data
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
