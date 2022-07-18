@@ -1,8 +1,6 @@
 import pickle
-# from .config import TSF_MODEL, RISE_MODEL, OBS, PREDICTION, OUTPUT_PATH
-# from .prepare_data import prepare_data
-from config import TSF_MODEL, RISE_MODEL, OBS, PREDICTION, OUTPUT_PATH
-from prepare_data import prepare_data
+from .config import TSF_MODEL, RISE_MODEL, OBS, PREDICTION, OUTPUT_PATH
+from .prepare_data import prepare_data
 import argparse
 import logging
 import pandas as pd
