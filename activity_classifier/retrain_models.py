@@ -9,8 +9,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
-from sktime.classification.interval_based import TimeSeriesForestClassifier
-from sktime.classification.interval_based import RandomIntervalSpectralEnsemble
+from sktime.classification.interval_based import TimeSeriesForest
+from sktime.classification.frequency_based import RandomIntervalSpectralForest
 # from sktime.transformers.series_as_features.summarize import RandomIntervalFeatureExtractor
 # from sktime.utils.time_series import time_series_slope
 
