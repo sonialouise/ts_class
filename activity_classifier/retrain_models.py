@@ -80,14 +80,14 @@ def train_and_cross_validate(data, model, model_name):
 #     return tsf
 
 def prepare_timeseries_forest_classifier():
-    tsf = TimeSeriesForest(
+    tsf = TimeSeriesForestClassifier(
         n_estimators=10
     )
     return tsf
 
 
 def prepare_random_interval_spectral_ensemble(n_estimators=10):
-    return RandomIntervalSpectralEnsemble(n_estimators=n_estimators)
+    return RandomIntervalSpectralForest(n_estimators=n_estimators)
 
 
 def retrain_tsf(data):
