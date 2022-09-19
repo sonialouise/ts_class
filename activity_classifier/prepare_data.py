@@ -15,7 +15,7 @@ def interpolate_data(data, seconds, end_frame_rate):
     """
     recorded_frame_rate = (len(data) - 1) / seconds
     frame_interval = 1 / end_frame_rate
-    frame_labels = list(range(0, len(data.columns)))
+    frame_labels = list(range(0, len(data)))
     x = np.multiply(frame_labels, 1 / recorded_frame_rate)
     interpolate_func = interp1d(x, data, "linear", fill_value="extrapolate")
 
