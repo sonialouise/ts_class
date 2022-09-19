@@ -10,10 +10,10 @@ def interpolate_data(data, seconds, end_frame_rate):
     Calculates given data frame rate and interpolates data to desired end_frame_rate
     :param data: Recorded data
     :param seconds: Recorded data total duration in seconds
-    :param end_frame_rate: Desired frame rate
+    :param end_frame_rate: Desired frame rate (frames per second)
     :return: Interpolated data per end_frame_rate
     """
-    recorded_frame_rate = (len(data.columns) - 1) / seconds
+    recorded_frame_rate = (len(data) - 1) / seconds
     frame_interval = 1 / end_frame_rate
     frame_labels = list(range(0, len(data.columns)))
     x = np.multiply(frame_labels, 1 / recorded_frame_rate)
