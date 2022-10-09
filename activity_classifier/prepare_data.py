@@ -35,4 +35,4 @@ def prepare_data(data, seconds, end_frame_rate):
     assert data.isnull().sum().sum() == 0, AssertionError("Data contains empty values, correct and retry")
     assert np.isinf(data).values.sum() == 0, AssertionError("Data contains inf values, correct and retry")
     data[OBS] = [interpolate_data(row, seconds, end_frame_rate) for row in data]
-    return data.to_numpy()
+    return data
