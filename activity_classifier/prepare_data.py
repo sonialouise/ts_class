@@ -21,7 +21,7 @@ def interpolate_data(data, seconds, end_frame_rate):
 
     x_new = np.arange(0, seconds + frame_interval, frame_interval)
     y_new = interpolate_func(x_new)
-    return np.array(y_new)
+    return pd.Series(y_new)
 
 
 def prepare_data(data, seconds, end_frame_rate):
