@@ -4,13 +4,14 @@ from .prepare_data import prepare_data
 import argparse
 import logging
 import pandas as pd
+import numpy as np
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 def run_model(data, model, model_name):
     loaded_model = pickle.load(open(model, 'rb'))
-    result = loaded_model.predict(pd.DataFrame(data[OBS]))
+    result = loaded_model.predict(np.array(data[OBS]))
     data[f"{model_name}_{PREDICTION}"] = result
     return data
 
