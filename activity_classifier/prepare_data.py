@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 from activity_classifier.config import OBS
 from scipy.interpolate import interp1d
@@ -33,5 +34,5 @@ def prepare_data(data, seconds, end_frame_rate):
     """
     assert data.isnull().sum().sum() == 0, AssertionError("Data contains empty values, correct and retry")
     assert np.isinf(data).values.sum() == 0, AssertionError("Data contains inf values, correct and retry")
-    data[OBS] = data.apply(lambda x: interpolate_data(x, seconds, end_frame_rate), axis=1, result_type='reduce')
+    data[OBS] = [pd.Series(interpolate_data(row, seconds, end_frame_rate)) for row in np.array(data)]
     return data
