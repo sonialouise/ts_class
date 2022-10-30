@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from activity_classifier.config import OBS
+from activity_classifier.config import OBS, INTERPOLATION_PATH
 from scipy.interpolate import interp1d
 
 
@@ -35,4 +35,6 @@ def prepare_data(data, seconds, end_frame_rate):
     assert data.isnull().sum().sum() == 0, AssertionError("Data contains empty values, correct and retry")
     assert np.isinf(data).values.sum() == 0, AssertionError("Data contains inf values, correct and retry")
     data[OBS] = [pd.Series(interpolate_data(row, seconds, end_frame_rate)) for row in np.array(data)]
+    interpolations = data[OBS].apply(pd.Series)
+    interpolations.to_csv(INTERPOLATION_PATH)
     return data
