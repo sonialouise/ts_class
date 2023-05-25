@@ -1,6 +1,6 @@
 # TimeSeries Classification for Spontaneous Neuron Activity
 
-**PLEASE NOTE - We are aware of an issue with the activity classifier and this is currently being resolved**
+# **PLEASE NOTE - We are aware of an issue with the activity classifier and this is currently being resolved**
 
 This repo contains code, pickle files and a Google Colab notebook for two binary classifiers of time series data. The aim of these models is to predict whether or not a neuron has spontaneous activity.
 
