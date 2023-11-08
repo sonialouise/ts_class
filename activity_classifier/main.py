@@ -19,8 +19,10 @@ def main(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    frame_no = float(args.duration) * float(args.sampling_rate)
-    data = prepare_data(data.iloc[:, 0:int(frame_no)], args.duration, args.sampling_rate)
+    sampling_rate = float(args.sampling_rate)
+    duration = float(args.duration)
+    frame_no = sampling_rate * duration
+    data = prepare_data(data.iloc[:, 0:int(frame_no)], duration, sampling_rate)
     logging.info("3. Predicting with TimeSeries Forest Classifier...")
     data = run_model(data, TSF_MODEL, 'TSF')
     logging.info("4. Predicting with Random Interval Spectral Ensemble...")
