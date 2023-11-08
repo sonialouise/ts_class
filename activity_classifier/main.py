@@ -19,7 +19,7 @@ def main(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    frame_no = args.duration * args.sampling_rate
+    frame_no = float(args.duration) * float(args.sampling_rate)
     data = prepare_data(data.iloc[:, 0:int(frame_no)], args.duration, args.sampling_rate)
     logging.info("3. Predicting with TimeSeries Forest Classifier...")
     data = run_model(data, TSF_MODEL, 'TSF')
