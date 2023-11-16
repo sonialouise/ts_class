@@ -51,7 +51,7 @@ enter
  ```commandline
  python -m activity_classifier.main path/to/data.csv <recording duration> <recording sampling rate>
  ```
- Note, number of frames should be the same number of frames used in model training. If greater or less frames are required, retrain first.
+ Note, duration and sampling rate should be the same as those used in model training. If different duration or sampling rate are required, retrain first.
  The output file should appear in the ts_class/data directory. 
 
 To run on our test data, use:
@@ -70,7 +70,7 @@ python -m activity_classifier.main data/test_data.csv 151 3.65
  python -m activity_classifier.retrain_models path/to/training/data.csv <recording duration> <recording sampling rate>
  ```
  
- The retrained models will be saved in the /models directory and will replace any existing models.
+The retrained models will be saved in the /models directory and will replace any existing models.
 
 To train models using our sample data, use:
 ```commandline
