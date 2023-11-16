@@ -5,7 +5,7 @@ import argparse
 import logging
 import pandas as pd
 
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
 
 def run_model(data, model, model_name):

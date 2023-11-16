@@ -39,20 +39,25 @@ Example train and test datasets are provided in the 'data' folder. The current m
 ## Running models
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
 
-To run the script, activate the virtual environment if using
-```python
-conda activate 'name of virtual environment'
+To run the script, activate the virtual environment if using (use conda or source depending on how environment was created)
+```commandline
+conda/source activate 'name of virtual environment'
 ```
 In the command line move to the ts_class folder 
-```python
+```commandline
 cd path/to/ts_class/
 ```
 enter
- ```python
- python -m activity_classifier.main path/to/data.csv <number of frames>
+ ```commandline
+ python -m activity_classifier.main path/to/data.csv <recording duration> <recording sampling rate>
  ```
  Note, number of frames should be the same number of frames used in model training. If greater or less frames are required, retrain first.
- The output file should appear in the ts_class/data directory
+ The output file should appear in the ts_class/data directory. 
+
+To run on our test data, use:
+```commandline
+python -m activity_classifier.main data/test_data.csv 151 3.65
+```
  
  
  ## Retraining models
@@ -61,11 +66,16 @@ enter
  Training data should be in the same format as above, but also include a labelling column called 'status' which contains the activity label for the neuron on that row (e.g. 'active', 'inactive')
  
  To run the script, activate the virtual environment if using, then in the command line move to the ts_class folder and enter
- ```python
+ ```commandline
  python -m activity_classifier.retrain_models path/to/training/data.csv <recording duration> <recording sampling rate>
  ```
  
  The retrained models will be saved in the /models directory and will replace any existing models.
+
+To train models using our sample data, use:
+```commandline
+python -m activity_classifier.retrain_models data/training_data.csv 151 3.65
+```
  
  
  

@@ -2,17 +2,17 @@ import argparse
 import logging
 import pickle
 from collections import defaultdict
-
+from copy import deepcopy
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split, KFold
 from sktime.classification.interval_based import RandomIntervalSpectralEnsemble, TimeSeriesForestClassifier
-
+from math import floor
 from .config import OBS, LABEL, TSF_MODEL, RISE_MODEL
 from .prepare_data import prepare_data
 
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
 
 def split_train_test(data):
@@ -79,7 +79,9 @@ def retrain_models(args):
     logging.info("1. Reading csv file...")
     data = pd.read_csv(args.data, header=0)
     logging.info("2. Normalising data...")
-    data = pd.concat([prepare_data(data.iloc[:, 0:int(args.frame_no)]), data[LABEL]], axis=1)
+    train_total_frames = floor(args.duration * args.sampling_rate)
+    trace_data = deepcopy(data.iloc[:, 0:train_total_frames])
+    data = pd.concat([prepare_data(trace_data, args.duration, args.sampling_rate), data[LABEL]], axis=1)
     logging.info("3. Retraining Time Series Classifier...")
     retrain_tsf(data)
     logging.info("4. Retraining Random Interval Spectral Ensemble...")
@@ -90,7 +92,8 @@ def retrain_models(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='test')
     parser.add_argument('data', help=f'Data to retrain model (csv format, must contain {LABEL} column)')
-    parser.add_argument('frame_no', help=f'Number of frames to use in retraining')
+    parser.add_argument('duration', type=int, help=f'Total recording duration in seconds')
+    parser.add_argument('sampling_rate', type=float, help=f'Recording sampling rate (Hz)')
     args = parser.parse_args()
 
     retrain_models(args)
