@@ -13,13 +13,14 @@ The easiest way to run and train these models is via the Colab notebook. To use 
 If needed, the repo can be cloned to your local machine, see here: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
 
 
-## Install requirements
-If running locally, it is assumed that python is already installed on your local machine. A virtual environment is recommended to hold all libraries required to run the project in a clean and safe way. To do this:
-1. Open command line
-2. python -m venv /path/to/new/virtual/environment    #We recommned creating new virtual environment in the envs folder C:/Users/Your_name/anaconda3/envs/SA
-4. /path/to/new/virtual/environment/Scripts/activate   #If using envs folder C:/Users/Your_name/anaconda3/envs/SA/Scripts/activate
-5. cd path/to/ts_class/   #change working directory to location of ts_class folder
-7. pip install -r requirements.txt
+## Local installation
+If running locally, a virtual environment is recommended to hold all libraries required to run the project in a clean and safe way. Make sure you choose Python version = 3.10 when setting up your virtual environment. To do this:
+1. Install an [Anaconda](https://www.anaconda.com/download/) distribution of Python 
+2. Open anaconda prompt
+3. Create a new environment with `conda create -n yourenvname python=3.10`
+4. Activate your environment `conda activate yourenvname`
+5. Change working directory to location of ts_class folder `cd path/to/ts_class/`   
+6. Install package requirements `pip install -r requirements.txt`
 
 
 ## Data
