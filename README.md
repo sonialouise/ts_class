@@ -35,7 +35,7 @@ The 'status' column is required for model training, but not for running the clas
 x_axis = observations_over_time
 y_axis = neurons
 
-Example train and test datasets are provided in the 'data' folder. The current models are trained on 151 second recordings. If greater or less durations are required, model retraining is needed. This can be done using our data (up to 301 seconds), or the users own data can be used, formatted as above.
+Example train and test datasets are provided in the 'data' folder. The current models are trained on 301 second recordings. If greater or less durations are required, model retraining is needed. This can be done using our data (up to 301 seconds), or the users own data can be used, formatted as above.
 
 ## Running models
 Both models are set up to be run from main.py, with the output of both contained in an output .csv file in the /data directory.
@@ -57,7 +57,7 @@ enter
 
 To run on our test data, use:
 ```commandline
-python -m activity_classifier.main data/test_data.csv 151 3.65
+python -m activity_classifier.main data/test_data.csv 301 3.65
 ```
  
  
@@ -75,7 +75,7 @@ The retrained models will be saved in the /models directory and will replace any
 
 To train models using our sample data, use:
 ```commandline
-python -m activity_classifier.retrain_models data/training_data.csv 151 3.65
+python -m activity_classifier.retrain_models data/training_data.csv <recording duration> 3.65
 ```
  
  
